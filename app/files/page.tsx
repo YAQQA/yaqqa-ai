@@ -45,9 +45,7 @@ export default function Files() {
   const limitReached =
     knowledgeUsed >= knowledgeLimit;
 
-  useEffect(() => {
-    loadKnowledge();
-  }, []);
+
 
   async function loadKnowledge() {
     setLoading(true);
@@ -136,7 +134,15 @@ export default function Files() {
     );
 
     setLoading(false);
-  }
+    }
+
+    useEffect(() => {
+    async function initializeKnowledge() {
+      await loadKnowledge();
+    }
+
+    initializeKnowledge();
+  }, []);
 
   async function addKnowledge() {
     if (
@@ -147,12 +153,15 @@ export default function Files() {
       return;
     }
 
-    if (limitReached) {
+        if (limitReached) {
       setMessage(
         `${planConfig.name} allows up to ${knowledgeLimit} business knowledge items. Upgrade your plan to add more.`
       );
       return;
     }
+  
+
+   
 
     setSaving(true);
     setMessage("");

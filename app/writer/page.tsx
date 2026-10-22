@@ -368,7 +368,7 @@ export default function WriterPage() {
           <div style={noticeStyle}>
             <strong>AI generation is temporarily paused.</strong>
             <div style={{ marginTop: 5 }}>
-              We're continuing to build YAQQA without making live AI requests.
+              We&apos;re continuing to build YAQQA without making live AI requests.
               Generation can be enabled after billing and server-side usage
               enforcement are ready.
             </div>

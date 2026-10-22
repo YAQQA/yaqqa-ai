@@ -1060,7 +1060,7 @@ ${enquiry}
                               fontSize: "16px",
                             }}
                           >
-                            YAQQA's suggested reply
+                            YAQQA&apos;s suggested reply
                           </div>
 
                           <div
@@ -1102,7 +1102,8 @@ ${enquiry}
                           marginTop: "8px",
                         }}
                       >
-                        You can edit YAQQA's reply before copying
+                        You can edit YAQQA&apos;s reply before copying
+it.
                         it.
                       </div>
                     </div>

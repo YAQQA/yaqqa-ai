@@ -106,9 +106,13 @@ export default function SettingsPage() {
     }
   }, []);
 
-  useEffect(() => {
-    void loadSettings();
-  }, [loadSettings]);
+   useEffect(() => {
+    async function initializeSettings() {
+      await loadSettings();
+    }
+
+    initializeSettings();
+  }, [loadSettings]); 
 
   async function saveSettings() {
     setError("");

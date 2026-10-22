@@ -73,15 +73,10 @@ export default function Chat() {
   const limitReached =
     chatUsed >= chatLimit;
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  
 
-  async function loadData() {
-    setPageLoading(true);
-    setErrorMessage("");
-
-    try {
+async function loadData() {
+  try {
       const {
         data: { user },
         error: userError,
@@ -328,6 +323,14 @@ export default function Chat() {
     }
   }
 
+  useEffect(() => {
+    async function initializeChat() {
+      await loadData();
+    }
+
+    initializeChat();
+  }, []);
+
   async function askYaqqa() {
     if (
       !message.trim() ||
@@ -363,29 +366,24 @@ export default function Chat() {
     throw new Error("Please log in again to use YAQQA Chat.");
   }
 
-  const response = await fetch("/api/chat", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${session.access_token}`,
+
+const response = await fetch("/api/chat", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${session.access_token}`,
+  },
+  body: JSON.stringify({
+    message: userMessage,
+    business: {
+      name: businessName,
+      description: businessDescription,
+      country,
     },
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            message: userMessage,
-            business: {
-              name: businessName,
-              description:
-                businessDescription,
-              country,
-            },
-            knowledge,
-          }),
-        }
-      );
+    knowledge,
+  }),
+});
+
 
       const data =
         await response.json();
@@ -484,9 +482,9 @@ export default function Chat() {
     }
   }
 
-  function useSuggestion(
-    text: string
-  ) {
+ function handleSuggestion(
+  text: string
+) {
     if (limitReached) {
       return;
     }
@@ -989,11 +987,11 @@ export default function Chat() {
                 >
                   <Suggestion
                     text="Write a customer reply"
-                    onClick={() =>
-                      useSuggestion(
-                        "Write a professional reply to a customer asking about our services."
-                      )
-                    }
+                  onClick={() =>
+  handleSuggestion(
+    "Write a professional reply to a customer asking about our services."
+  )
+}
                     disabled={
                       limitReached
                     }
@@ -1002,10 +1000,10 @@ export default function Chat() {
                   <Suggestion
                     text="Create a social post"
                     onClick={() =>
-                      useSuggestion(
-                        "Create a social media post promoting my business."
-                      )
-                    }
+  handleSuggestion(
+    "Write a professional reply to a customer asking about our services."
+  )
+}
                     disabled={
                       limitReached
                     }
@@ -1014,10 +1012,10 @@ export default function Chat() {
                   <Suggestion
                     text="Tell me about my business"
                     onClick={() =>
-                      useSuggestion(
-                        "What do you know about my business?"
-                      )
-                    }
+  handleSuggestion(
+    "Write a professional reply to a customer asking about our services."
+  )
+}
                     disabled={
                       limitReached
                     }

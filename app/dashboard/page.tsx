@@ -258,8 +258,12 @@ export default function DashboardPage() {
     }
   }, []);
 
-  useEffect(() => {
-    void loadDashboard();
+    useEffect(() => {
+    async function initializeDashboard() {
+      await loadDashboard();
+    }
+
+    initializeDashboard();
   }, [loadDashboard]);
 
   const planConfig = getPlanConfig(plan);
