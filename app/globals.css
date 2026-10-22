@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================
+   YAQQA AI — Shared Workspace Design
+   ========================================= */
+
+:root {
+  --yaqqa-bg: #0b1020;
+  --yaqqa-sidebar: #090e1a;
+  --yaqqa-card: #111827;
+  --yaqqa-border: #253047;
+  --yaqqa-purple: #8b5cf6;
+  --yaqqa-purple-light: #c4b5fd;
+  --yaqqa-text: #f8fafc;
+  --yaqqa-muted: #94a3b8;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--yaqqa-bg);
+  color: var(--yaqqa-text);
+}
+
+.yaqqa-sidebar {
+  width: 248px;
+  min-height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 16px 20px;
+  box-sizing: border-box;
+  background: var(--yaqqa-sidebar);
+  border-right: 1px solid #202a3d;
+}
+
+.yaqqa-brand {
+  display: inline-block;
+  padding: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 28px;
+  font-weight: 850;
+  letter-spacing: -1.5px;
+}
+
+.yaqqa-brand span {
+  color: var(--yaqqa-purple-light);
+}
+
+.yaqqa-tagline {
+  margin: 6px 10px 36px;
+  color: var(--yaqqa-muted);
+  font-size: 12px;
+}
+
+.yaqqa-nav {
+  display: grid;
+  gap: 28px;
+}
+
+.yaqqa-nav-group {
+  display: grid;
+  gap: 5px;
+}
+
+.yaqqa-nav-heading {
+  padding: 0 12px;
+  margin-bottom: 7px;
+  color: #68778e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.yaqqa-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #9aa8bc;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.yaqqa-nav-link:hover {
+  color: #fff;
+  background: #141c2d;
+}
+
+.yaqqa-nav-link.active {
+  color: #fff;
+  background: linear-gradient(100deg, #292143, #1a1b32);
+  border-color: #40345f;
+  font-weight: 700;
+}
+
+.yaqqa-nav-icon {
+  width: 20px;
+  flex-shrink: 0;
+  color: #8290a5;
+  text-align: center;
+  font-size: 17px;
+}
+
+.yaqqa-nav-link.active .yaqqa-nav-icon {
+  color: var(--yaqqa-purple-light);
+}
+
+.yaqqa-sidebar-footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: auto;
+  padding: 16px 12px;
+  border: 1px solid #2c2945;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #19172b, #101626);
+}
+
+.yaqqa-footer-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: #a78bfa;
+  box-shadow: 0 0 12px #8b5cf655;
+}
+
+.yaqqa-footer-title {
+  color: var(--yaqqa-purple-light);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+}
+
+.yaqqa-footer-copy {
+  margin-top: 7px;
+  color: var(--yaqqa-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .yaqqa-sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 18px 14px;
+    border-right: 0;
+    border-bottom: 1px solid #202a3d;
+  }
+
+  .yaqqa-tagline {
+    margin-bottom: 18px;
+  }
+
+  .yaqqa-nav {
+    gap: 16px;
+  }
+
+  .yaqqa-nav-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .yaqqa-nav-heading {
+    grid-column: 1 / -1;
+  }
+
+  .yaqqa-sidebar-footer {
+    margin-top: 18px;
+  }
+}
